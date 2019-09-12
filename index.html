@@ -313,14 +313,27 @@ $(this).find($(".fa")).removeClass('fa-rss').addClass('fa-discord');
 					  };
 					</script>
 					<h2> TEST DE VOTRE IMAGE <span class="hu-blog-subheading"> </span></h2>
-		      
-					<input type="file" accept="image/*" onchange="loadFile2(event)">
-					<script>
-					  var loadFile2 = function(event) {
-						var output3 = document.getElementById('header');
-						output3.style.backgroundImage = 'url('+ event.target.files[0] +')';
-					  };
-					</script>
+		      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+						<input type='file' id='verborgen_file' />
+						<input type="button" value="Upload" id="uploadButton" />
+						<script>
+						$('#verborgen_file').hide();
+							$('#uploadButton').on('click', function () {
+								  $('#verborgen_file').click();
+							});
+
+							$('#verborgen_file').change(function () {
+								var file = this.files[0];
+								var reader = new FileReader();
+								reader.onloadend = function () {
+								   $('#header').css('background-image', 'url("' + reader.result + '")');
+								}
+								if (file) {
+									reader.readAsDataURL(file);
+								} else {
+								}
+							});
+						</script>
 					<h2> TEST DE VOTRE FOND <span class="hu-blog-subheading"> </span></h2>
     	
     </div><!--/.page-title-->
